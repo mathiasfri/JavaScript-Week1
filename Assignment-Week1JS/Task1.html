@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1</title>
+</head>
+<body>
+    <h1>Task 1</h1>
+    <div id="d1" style="width: 100px;margin: 1px;">&nbsp;</div>
+    <div id="d2" style="width: 100px;margin: 1px;">&nbsp;</div>
+    <div id="d3" style="width: 100px;margin: 1px;">&nbsp;</div>
+    <button id="btn">Change colors</button>
+
+    <a href="/Assignment-Week1JS/">Go back</a>
+</body>
+</html>
+
+<script>
+    const divs = document.querySelectorAll("div");
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].style.backgroundColor = "blue";
+        };
+
+    document.getElementById("btn").onclick = () => {
+        divs[1].style.backgroundColor = "red";
+        divs[2].style.backgroundColor = "green";
+        divs[3].style.backgroundColor = "yellow";
+    }
+    
+</script>

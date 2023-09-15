@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 4</title>
+    <h1>Task 4</h1>
+</head>
+<body>
+    <select id="car-selector">
+        <option value="Ford">Ford</option>
+        <option value="WW">WW</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Volvo">Volvo</option>
+    </select>
+    <h2>Selected Brand</h2>
+    <h4 id="car-make"></h4>
+    <a href="/Assignment-Week1JS/">Go back</a>
+</body>
+</html>
+
+<script>
+    const cars = ["Ford", "WW", "Toyota", "Volvo"]; //Assume this was fechedfrom the backend
+    document.getElementById("car-selector").onchange = (evt) => {
+        const carMake = evt.target.value;
+        document.getElementById("car-make").innerText = carMake;
+    }
+</script>
