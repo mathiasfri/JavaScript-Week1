@@ -26,6 +26,19 @@
     <a href="/Assignment-Week1JS/">Go back</a>
 </div>
 
+<h2>Reflections</h2>
+<div style="border: 1px solid black; border-radius: 5px;padding: 1em;">
+    <ul>
+        <li>Where and why you used the event-method preventDefault()</li>
+            <ul><li>I used it to prevent the page from reloading when I clicked the buttons</li></ul>
+        <li>Even if not done in this exercise, what do you have to be aware of when using the innerHTML field</li>
+            <ul><li>You have to be aware of the security risks, and that it can be used to inject malicious code into your page</li></ul>
+        <li>How did you change the DOM-list with all the names when you added, removed a name?</li>
+        <ul><li>By manipulating a single DOM element, or by rebuilding the whole UL using the new version of the data
+            I changed the DOM-list by rebuilding the whole UL using the new version of the data</li></ul>
+    </ul>
+</div>
+
 <script>
     //Will eventually (day 4) come from a server-API
     const names = ["Lars", "Peter", "Jan", "Lise", "Janne"]
@@ -97,6 +110,5 @@
         return str;
     }
 </script>
-
 </body>
 </html>
