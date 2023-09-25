@@ -1,7 +1,10 @@
-let fetchedCarId = 0;
-
 document.addEventListener("DOMContentLoaded", function() {
     const url = "https://cars2-web-app.azurewebsites.net/api/cars";
+    //const url = "http://localhost:8080/api/cars";
+
+
+
+    /////////////// GET ALL CARS ///////////////////////
 
     const fetchCarsButton = document.getElementById("btn-get-all");
     const carList = document.getElementById("carList");
@@ -32,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
             })
     })
 
+    /////////////// FIND CAR ///////////////////////
+
     const findCarButton = document.getElementById("btn-find-car");
 
     findCarButton.addEventListener("click", function() {
@@ -48,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById("found-car").innerText = JSON.stringify(data, null, 2);
             })
     })
+
+    /////////////// ADD CAR ///////////////////////
 
     const addCarButton = document.getElementById("btn-add-car");
 
@@ -76,11 +83,17 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     })
 
-    
-    document.getElementById("find-btn").addEventListener("click", function() {
-        const findCarId = document.getElementById("text-for-id2").value;
 
-        fetch(url + "/" + findCarId)
+    /////////////// UPDATE CAR ///////////////////////
+
+    document.getElementById("find-btn").addEventListener("click", editCar);
+
+    function editCar(evt) {
+        evt.preventDefault();
+
+        const carId = document.getElementById("text-for-id2").value;
+        
+        fetch(url + "/" + carId)
             .then(res => {
                 if (!res.ok) {
                     throw new Error(`Car not found: ${res.status}`);
@@ -93,48 +106,34 @@ document.addEventListener("DOMContentLoaded", function() {
                 carForm.model.value = car.model;
                 carForm.pricePrDay.value = car.pricePrDay;
                 carForm.bestDiscount.value = car.bestDiscount;
-
-                fetchedCarId = car.id;
             })
             .catch(e => {
                 console.error("Error fetching car", e);
             });
-    });
+        
+            carForm.addEventListener("submit", function(evt) {
+                evt.preventDefault();
+                const updatedCar = {
+                    brand: carForm.brand.value,
+                    model: carForm.model.value,
+                    pricePrDay: parseFloat(carForm.pricePrDay.value),
+                    bestDiscount: parseInt(carForm.bestDiscount.value),
+                };
 
-    function updateCar(car){
-        if (fetchedCarId === null) {
-            throw new Error("No car ID provided");
-            return;
-        }
+                const options = {
+                    method: "PUT",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(updatedCar)
+                };
 
-        return fetch(url + "/" + fetchedCarId, {
-            method: "PUT",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(car)
-        })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`Car not updated: ${res.status}`);
-            }
-            return res.json();
-        });
-    }
-
-    const carForm = document.getElementById("carForm2");
-    carForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-        const updatedCar = {
-            brand: carForm.brand.value,
-            model: carForm.model.value,
-            pricePrDay: parseFloat(carForm.pricePrDay.value),
-            bestDiscount: parseInt(carForm.bestDiscount.value),
-        };
-        updateCar(updatedCar)
-            .then(data => {
-                alert("Car updated");
-            })
-            .catch(e => {
-                console.error("Error updating car", e);
+                fetch(url + "/" + carId, options)
+                    .then(res => res.json())
+                    .then(data => {
+                        alert("Car updated");
+                    })
+                    .catch(e => {
+                        console.error("Error updating car", e);
+                    });
             });
-    });
+    }
 })
