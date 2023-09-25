@@ -29,3 +29,16 @@ export async function loadHtml(page) {
  return div
 }
 
+export function makeOptions(method, body){
+  const opts =  {
+    method: method,
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  }
+  if(body){
+    opts.body = JSON.stringify(body)
+  }
+  return opts
+}
