@@ -7,6 +7,14 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+    <style>
+        .reflections{
+            border: solid 1px steelblue;
+              width: 50%;
+              padding: 1em;
+              margin:0.5em;
+        }
+    </style>
     <h1>User List and Search</h1>
     <label for="userIdInput">Enter User ID: </label>
     <input type="text" id="userIdInput">
@@ -22,6 +30,16 @@
         </thead>
         <tbody id="userList"></tbody>
     </table>
+    <div class="reflections">
+        <h2>Reflections</h2>
+        <p>A promise object returns a completion or a failure of an operation and its resulting value.</p>
+        <p>In this case the fetch returns a JSON which I iterate through and specify what I want from the data in the JSON.</p>
+        <p>We have to do 2 .then as the first time we have to fetch the JSON and return it as JSON.
+            After I need to iterate through the JSON and return the data I want.</p>
+        </p>
+        <p>I can make sure that when I fetch the first time, I get a JSON file, which I can use.</p>
+        <p>The second time I use .then I iterate through the data and choose which data I want to use and how.</p>
+    </div>
 </body>
 </html>
 

@@ -19,6 +19,12 @@
         .col {
             border: 1px solid steelblue;
         }
+        .reflections{
+            border: solid 1px steelblue;
+              width: 50%;
+              padding: 1em;
+              margin:0.5em;
+        }
     </style>
 </head>
 
@@ -114,6 +120,19 @@
     </div>
 </div>
 </div>
+<div class="reflections">
+    <h2>Reflections</h2>
+    <p>
+      Explain how you, for the POST-question, created the object that must match your DTO class on the server.
+      <ul>As the id is automatically generated, I did not include it in the object.
+      I created a const object with the same names as the DTO class and then used the values from a form to fill the object.</ul>
+    </p>
+    <p>
+      What must be added to a fetch-POST request (similar to what you did with postman) Explain the purpose of each part
+      of the request you had to add.
+      <ul>I had to add the method: 'POST' and the body: JSON.stringify(object).
+      The method is to tell the server that we want to post something.</ul>
+    </p>
 <script src="./day3-exercise3.js"></script>
 </body>
 </html>
